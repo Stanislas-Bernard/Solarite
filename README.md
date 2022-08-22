@@ -25,6 +25,12 @@ Afin de factoriser au maximum l'affichage des pages, il nous faudra construire u
 
 Afin de pouvoir développer le lore de l'univers, il nous faudra construire un back office permettant de gérer les différents items affiché sur le site.
 
+### Les langages et frameworks utilisés :
+
+- HTML
+- CSS
+- PHP / Symfony
+
 ### Wireframe :
 
 ![Wireframe Solarité](./docs/Wireframe%20la%20Solarit%C3%A9.png)
