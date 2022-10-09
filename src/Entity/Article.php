@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticlesRepository;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
-class Articles
+class Article
 {
     /**
      * @ORM\Id
@@ -23,29 +24,37 @@ class Articles
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $subtitle;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="date_immutable")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="date_immutable", nullable=true)
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $categoryId;
+    private $category;
 
     public function getId(): ?int
     {
@@ -60,6 +69,18 @@ class Articles
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
 
         return $this;
     }
@@ -81,7 +102,7 @@ class Articles
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -105,21 +126,21 @@ class Articles
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getCategoryId(): ?int
+    public function getCategory(): ?Category
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
-    public function setCategoryId(int $categoryId): self
+    public function setCategory(?Category $category): self
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
 
         return $this;
     }

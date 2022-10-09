@@ -2,29 +2,31 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController extends AbstractController
+class ArticleController extends AbstractController
 {
+    
     /**
-     * @Route("/", name="home")
+     * @Route("/Article/{articleCategory}/{articleName}", name="article_name")
      */
-    public function home(ArticleRepository $articleRepository): Response
+    public function articleShow($articleName, $articleCategory, ArticleRepository $articleRepository)
     {
+        $articleToShow = $articleRepository->findOne($articleName);
+
         $campagnelist = $articleRepository->findAllByType(1);
         $racelist = $articleRepository->findAllByType(2);
         $classelist = $articleRepository->findAllByType(3);
         $legendlist = $articleRepository->findAllByType(4);
         $actualitylist = $articleRepository->findAllByType(5);
         $divinitylist = $articleRepository->findAllByType(6);
-        
-        // dd($racelist);
 
-        return $this->render('main/home.html.twig', [
-            'controller_name' => 'MainController',
+        return $this->render('article/article.html.twig', [
+            'controller_name' => 'ArticleController',
+            'articleToShow' => $articleToShow,
             'campagnelist' => $campagnelist,
             'racelist' => $racelist,
             'classelist' => $classelist,
@@ -33,5 +35,4 @@ class MainController extends AbstractController
             'divinitylist' => $divinitylist,
         ]);
     }
-    
 }

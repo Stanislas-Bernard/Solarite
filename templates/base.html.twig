@@ -17,36 +17,29 @@
     <header>
         <nav>
             <div class="div-logo">
-                <img class="header-logo" src="{{asset('assets/images/prototypeLogoSolarité2.png')}}" alt="">
+                <a href="{{ path('home') }}"><img class="header-logo" src="{{asset('assets/images/prototypeLogoSolarité2.png')}}" alt=""></a>
             </div>
             <ul class="menu-list">
-                <li>Accueil</li>
-                <li>Actualités</li>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="">Actualités</a></li>
                 <li class="campagnes">Campagnes
                     <nav class="sub-menu campagne">
                         <i>▼</i>
                         <ul class="menu-list">
-                            <li>La chute de Saladimar</li>
+                            {% for article in campagnelist %}
+                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                            {% endfor %}
                         </ul>
+                        
                     </nav>
                 </li>
                 <li class="races">Races
                     <nav class="sub-menu race">
                         <i>▼</i>
                         <ul class="menu-list">
-                            <li>Abeeso</li>
-                            <li>Armadil</li>
-                            <li>Chtapod</li>
-                            <li>Elnia</li>
-                            <li>Gedan</li>
-                            <li>Humain</li>
-                            <li>Impisi</li>
-                            <li>Olen</li>
-                            <li>Raero</li>
-                            <li>Rakuna</li>
-                            <li>Vilka</li>
-                            <li>Xygab</li>
-                            <li>Zohl</li>
+                            {% for article in racelist %}
+                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </nav>
                 </li>
@@ -54,20 +47,9 @@
                     <nav class="sub-menu classe">
                         <i>▼</i>
                         <ul class="menu-list">
-                            <li>Assassin</li>
-                            <li>Barde</li>
-                            <li>Berserker</li>
-                            <li>Conjurateur</li>
-                            <li>Dimensien</li>
-                            <li>Gardien</li>
-                            <li>Guérisseur</li>
-                            <li>Invocateur</li>
-                            <li>Métamorphe</li>
-                            <li>Moine</li>
-                            <li>Nécromancien</li>
-                            <li>Paladin</li>
-                            <li>Sorcier</li>
-                            <li>Voleur</li>
+                            {% for article in classelist %}
+                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </nav>
                 </li>
@@ -75,19 +57,9 @@
                     <nav class="sub-menu dieu">
                         <i>▼</i>
                         <ul class="menu-list">
-                            <li>Dasin</li>
-                            <li>Disparm</li>
-                            <li>Dolarac</li>
-                            <li>Dusisprar</li>
-                            <li>Iodaj</li>
-                            <li>Madan</li>
-                            <li>Maurod</li>
-                            <li>Natodaric</li>
-                            <li>Paudr</li>
-                            <li>Tadgoud</li>
-                            <li>Tasdastris</li>
-                            <li>Toyad</li>
-                            <li>Vindur</li>
+                            {% for article in divinitylist %}
+                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </nav>
                 </li>
