@@ -191,6 +191,15 @@ h3 {
     text-decoration: underline #DEA057;
 }
 
+.nav-article h3 {
+    font-size: 0.9em;
+}
+
+.previous {
+    justify-content: right;
+    text-align: end;
+}
+
 .previous img {
     position: absolute;
     z-index: 0;
@@ -200,8 +209,9 @@ h3 {
 }
 
 .next {
+    justify-content: left;
     flex-direction: row-reverse;
-    text-align: end;
+    text-align: start;
 }
 
 .next img {
@@ -214,7 +224,6 @@ h3 {
 
 .nav-article div {
     padding: 5px 15px ;
-    background-color: rgba(255, 255, 255, 0.3);
     z-index: 1;
     text-shadow: 1px 1px 2px rgb(255, 255, 255);
     color: black;
@@ -231,7 +240,6 @@ h3 {
 }
 
 .nav-article button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 1.5em;
     text-shadow: 0px 0px 5px black;
     color: #DEA057;
@@ -337,8 +345,8 @@ footer div li {
         width: 70%;
     }
 
-    .nav-article p {
-        display: block;
+    .nav-article div {
+        text-shadow: 1px 1px 2px rgb(255, 255, 255);
     }
 
     /****MAIN****/

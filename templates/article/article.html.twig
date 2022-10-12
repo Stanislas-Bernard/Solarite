@@ -21,6 +21,36 @@
             </div>
         </article>
         {% endfor %}
+        <div class="other-article">
+            {% for article in articlePrevious %}
+            <div class="nav-article previous">
+                <img src="{{asset(article.image)}}" alt="">
+                <a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}"><button>⮘</button></a>
+                <div>
+                    {% if (article.title == "Elnias") %}
+                    <h2>Les {{ article.title }}</h2>
+                    {% else %}
+                    <h2>Les {{ article.title }}s</h2>
+                    {% endif %}
+                    <h3>{{ article.subtitle }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+            {% for article in articleNext %}
+            <div class="nav-article next">
+                <img src="{{asset(article.image)}}" alt="">
+                <a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}"><button>⮚</button></a>
+                <div>
+                    {% if (article.title == "Elnias") %}
+                    <h2>Les {{ article.title }}</h2>
+                    {% else %}
+                    <h2>Les {{ article.title }}s</h2>
+                    {% endif %}
+                    <h3>{{ article.subtitle }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </main>
 
 {% endblock %}

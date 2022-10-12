@@ -18,7 +18,6 @@ class MainController extends AbstractController
         $racelist = $articleRepository->findAllByType(2);
         $classelist = $articleRepository->findAllByType(3);
         $legendlist = $articleRepository->findAllByType(4);
-        $actualitylist = $articleRepository->findAllByType(5);
         $divinitylist = $articleRepository->findAllByType(6);
         
         // dd($racelist);
@@ -29,7 +28,6 @@ class MainController extends AbstractController
             'racelist' => $racelist,
             'classelist' => $classelist,
             'legendlist' => $legendlist,
-            'actualitylist' => $actualitylist,
             'divinitylist' => $divinitylist,
         ]);
     }
