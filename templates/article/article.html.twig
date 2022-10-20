@@ -3,9 +3,8 @@
 {% block main %}
 
     <main>
-        {% for article in articleToShow %}
         <article >
-            {% if (article.image is empty) %}
+            {% if (article.image is null) %}
             <img class="article-img" src="" alt="">
             {% else %}
             <img class="article-img" src="{{asset(article.image)}}" alt="">
@@ -13,43 +12,48 @@
             <div class="article-content">
                 {% if (article.title == "Elnias") %}
                 <h2 class="main-title">Les {{ article.title }}</h2>
-                {% else %}
+                {% elseif (article.category.name == "Race") or (article.category.name == "Classe") %}
                 <h2 class="main-title">Les {{ article.title }}s</h2>
+                {% else %}
+                <h2 class="main-title">{{ article.title }}</h2>
                 {% endif %}
                 <h3>{{ article.subtitle }}</h3>
                 <p>{{ article.content }}</p>
             </div>
         </article>
-        {% endfor %}
         <div class="other-article">
-            {% for article in articlePrevious %}
             <div class="nav-article previous">
-                <img src="{{asset(article.image)}}" alt="">
-                <a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}"><button>⮘</button></a>
+                {% if (articlePrevious.image is null) %}
+                <img class="article-img" src="" alt="">
+                {% else %}
+                <img src="{{asset(articlePrevious.image)}}" alt="">
+                {% endif %}
+                <a href="{{ path('article_name', {name: articlePrevious.category.name, title: articlePrevious.title}) }}"><button>⮘</button></a>
                 <div>
-                    {% if (article.title == "Elnias") %}
-                    <h2>Les {{ article.title }}</h2>
+                    {% if (articlePrevious.title == "Elnias") %}
+                    <h2>Les {{ articlePrevious.title }}</h2>
                     {% else %}
-                    <h2>Les {{ article.title }}s</h2>
+                    <h2>Les {{ articlePrevious.title }}s</h2>
                     {% endif %}
-                    <h3>{{ article.subtitle }}</h3>
+                    <h3>{{ articlePrevious.subtitle }}</h3>
                 </div>
             </div>
-            {% endfor %}
-            {% for article in articleNext %}
             <div class="nav-article next">
-                <img src="{{asset(article.image)}}" alt="">
-                <a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}"><button>⮚</button></a>
+                {% if (articleNext.image is null) %}
+                <img class="article-img" src="" alt="">
+                {% else %}
+                <img src="{{asset(articleNext.image)}}" alt="">
+                {% endif %}
+                <a href="{{ path('article_name', {name: articleNext.category.name, title: articleNext.title}) }}"><button>⮚</button></a>
                 <div>
-                    {% if (article.title == "Elnias") %}
-                    <h2>Les {{ article.title }}</h2>
+                    {% if (articleNext.title == "Elnias") %}
+                    <h2>Les {{ articleNext.title }}</h2>
                     {% else %}
-                    <h2>Les {{ article.title }}s</h2>
+                    <h2>Les {{ articleNext.title }}s</h2>
                     {% endif %}
-                    <h3>{{ article.subtitle }}</h3>
+                    <h3>{{ articleNext.subtitle }}</h3>
                 </div>
             </div>
-            {% endfor %}
         </div>
     </main>
 

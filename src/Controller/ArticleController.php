@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,35 +13,37 @@ class ArticleController extends AbstractController
 {
     
     /**
-     * @Route("/Article/{articleCategory}/{articleName}", name="article_name")
+     * @Route("/Article/{name}/{title}", name="article_name")
      */
-    public function articleShow($articleName, $articleCategory, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
+    public function articleShow(Article $article, Category $category, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
     {
-        // définit l'article à afficher
-        $articleToShow = $articleRepository->findOne($articleName);
+        // récupère les articles en fonction de la categorie en cours
+        $categoryArticles = $articleRepository->findAllByType($category->getId());
 
-        // définit la base de l'Id de l'article suivant et précédent
-        $articleIdNext = $articleToShow[0]->getId()+1;
-        $articleIdPrevious = $articleToShow[0]->getId()-1;
-
-        // récupère le nombre d'article en fonction de la categorie
-        $categoryId = $categoryRepository->findAllByName($articleCategory);
-        $articles = $articleRepository->findAllByType($categoryId);
-        $articleNumber = count($articles);
-
-        // condition pour ne pas se retrouver avec l'article suivant introuvable
-        if($articleIdNext > $articleNumber) {
-            $articleIdNext = 1;
+        // fait correspondre les index de l'article en cours et de l'article du tableau de categorie
+        $i = -1;
+        foreach ($categoryArticles as $categoryArticle) {
+            $i++;
+            if ($categoryArticle->getId() === $article->getId()){
+                $articleNumber = count($categoryArticles);
+                // condition pour ne pas se retrouver avec l'article suivant introuvable
+                if($i >= $articleNumber-1) {
+                    // recupere l'article suivant et précédent dans le tebleau d'article de la categorie
+                    $articleNext = $categoryArticles[0];
+                    $articlePrevious = $categoryArticles[$i-1];
+                }
+                // condition pour ne pas se retrouver avec l'article précédent introuvable
+                elseif($i <= 0) {
+                    // recupere l'article suivant et précédent dans le tebleau d'article de la categorie
+                    $articleNext = $categoryArticles[$i+1];
+                    $articlePrevious = $categoryArticles[$articleNumber-1];
+                }
+                else {
+                    $articleNext = $categoryArticles[$i+1];
+                    $articlePrevious = $categoryArticles[$i-1];
+                }
+            }
         }
-
-        // condition pour ne pas se retrouver avec l'article précédent introuvable
-        if($articleIdPrevious <= 0) {
-            $articleIdPrevious = $articleNumber;
-        }
-
-        // obtient les articles précédent et suivant en fonction de l'id
-        $articleNext = $articleRepository->findById($articleIdNext);
-        $articlePrevious = $articleRepository->findById($articleIdPrevious);
 
 
         // necessaire a l'affichage des article dans le menu menu (surement mieux en factorisant ?)
@@ -52,7 +55,7 @@ class ArticleController extends AbstractController
 
         return $this->render('article/article.html.twig', [
             'controller_name' => 'ArticleController',
-            'articleToShow' => $articleToShow,
+            'article' => $article,
             'articleNext' => $articleNext,
             'articlePrevious' => $articlePrevious,
             'campagnelist' => $campagnelist,

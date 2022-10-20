@@ -27,7 +27,7 @@
                         <i>▼</i>
                         <ul class="menu-list">
                             {% for article in campagnelist %}
-                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                                <li><a href="{{ path('article_name', {name: article.category.name, title: article.title}) }}">{{ article.title }}</a></li>
                             {% endfor %}
                         </ul>
                         
@@ -38,7 +38,7 @@
                         <i>▼</i>
                         <ul class="menu-list">
                             {% for article in racelist %}
-                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                                <li><a href="{{ path('article_name', {name: article.category.name, title: article.title}) }}">{{ article.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </nav>
@@ -48,7 +48,7 @@
                         <i>▼</i>
                         <ul class="menu-list">
                             {% for article in classelist %}
-                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                                <li><a href="{{ path('article_name', {name: article.category.name, title: article.title}) }}">{{ article.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </nav>
@@ -58,7 +58,7 @@
                         <i>▼</i>
                         <ul class="menu-list">
                             {% for article in divinitylist %}
-                                <li><a href="{{ path('article_name', {articleCategory: article.category.name, articleName: article.title}) }}">{{ article.title }}</a></li>
+                                <li><a href="{{ path('article_name', {name: article.category.name, title: article.title}) }}">{{ article.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </nav>
