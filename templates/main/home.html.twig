@@ -4,17 +4,39 @@
 
     <main>
         <article >
-            <img class="article-img" src="{{asset('assets/images/BannièreAbeeso.png')}}" alt="">
+            {% if (mainArticle.image is null) %}
+            <img class="article-img" src="" alt="">
+            {% else %}
+            <img class="article-img" src="{{asset(mainArticle.image)}}" alt="">
+            {% endif %}
             <div class="article-content">
-                <h2 class="main-title">Lancement du site officiel !</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod aliquam libero tenetur laborum laudantium tempora at vel eveniet non, officiis ipsa natus rem ipsam ducimus unde officia voluptatem! Tempore vero, eveniet voluptatum dolore laborum soluta deserunt. Distinctio esse sint ipsam dolorem voluptatum quia, deserunt atque laboriosam quis aperiam nesciunt enim? Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, minima? Nostrum ab nesciunt quod nulla atque fugit, aperiam nemo possimus omnis sit voluptates officia temporibus eum tempora repudiandae voluptas doloribus fugiat recusandae quidem ad in deleniti. In quidem dicta odit debitis harum molestiae facilis, adipisci numquam! Tenetur consectetur ipsum consequuntur laboriosam consequatur aliquam sed laborum quo! Fuga, voluptate quaerat? Mollitia nulla odio ullam dolore at veritatis architecto labore beatae quasi quibusdam enim praesentium ratione neque pariatur deleniti id tempora quia sint facere quos, voluptatem quae odit quam? Qui, sapiente reiciendis. Ipsam corporis quidem recusandae beatae! Ipsum, consectetur. Quibusdam, beatae iste.</p>
+                <h2 class="main-title">{{ mainArticle.title }}</h2>
+                <h3>{{ mainArticle.subtitle }}</h3>
+                <p>{{ mainArticle.content }}</p>
+            </div>
+        </article>
+        <article >
+            {% if (lastArticle.image is null) %}
+            <img class="article-img" src="" alt="">
+            {% else %}
+            <img class="article-img" src="{{asset(lastArticle.image)}}" alt="">
+            {% endif %}
+            <div class="article-content">
+                <h2 class="main-title">{{ lastArticle.title }}</h2>
+                <h3>{{ lastArticle.subtitle }}</h3>
+                <p>{{ lastArticle.content }}</p>
             </div>
         </article>
         <article class="shop-article">
-            <img class="article-img" src="{{asset('assets/images/BannièreChtapods.png')}}" alt="">
+            {% if (itemArticle.image is null) %}
+            <img class="article-img" src="" alt="">
+            {% else %}
+            <img class="article-img" src="{{asset(itemArticle.image)}}" alt="">
+            {% endif %}
             <div class="article-content">
-                <h2 class="main-title">Solarité: Guide de jeu</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod aliquam libero tenetur laborum laudantium tempora at vel eveniet non, officiis ipsa natus rem ipsam ducimus unde officia voluptatem! Tempore vero, eveniet voluptatum dolore laborum soluta deserunt. Distinctio esse sint ipsam dolorem voluptatum quia, deserunt atque laboriosam quis aperiam nesciunt enim?</p>
+                <h2 class="main-title">{{ itemArticle.title }}</h2>
+                <h3>{{ itemArticle.subtitle }}</h3>
+                <p>{{ itemArticle.content }}</p>
                 <button><i class="fa fa-shopping-cart"> - Acheter</i></button>
             </div>
         </article>

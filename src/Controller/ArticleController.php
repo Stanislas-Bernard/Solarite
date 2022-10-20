@@ -65,4 +65,31 @@ class ArticleController extends AbstractController
             'divinitylist' => $divinitylist,
         ]);
     }
+
+
+    /**
+     * @Route("/Actualites", name="actuality")
+     */
+    public function actualityShow(ArticleRepository $articleRepository)
+    {
+        // recupere tout les articles de la categorie actualité
+        $actualitylist = $articleRepository->findAllByType(5);
+
+        // necessaire a l'affichage des article dans le menu menu (surement mieux en factorisant ?)
+        $campagnelist = $articleRepository->findAllByType(1);
+        $racelist = $articleRepository->findAllByType(2);
+        $classelist = $articleRepository->findAllByType(3);
+        $legendlist = $articleRepository->findAllByType(4);
+        $divinitylist = $articleRepository->findAllByType(6);
+
+        return $this->render('article/actuality.html.twig', [
+            'controller_name' => 'ArticleController',
+            'actualitylist' => $actualitylist,
+            'campagnelist' => $campagnelist,
+            'racelist' => $racelist,
+            'classelist' => $classelist,
+            'legendlist' => $legendlist,
+            'divinitylist' => $divinitylist,
+        ]);
+    }
 }
