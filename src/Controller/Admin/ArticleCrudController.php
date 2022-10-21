@@ -20,6 +20,7 @@ class ArticleCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title'),
+            TextField::new('slug'),
             TextField::new('subtitle'),
             TextareaField::new('content')->renderAsHtml(),
             TextField::new('image'),

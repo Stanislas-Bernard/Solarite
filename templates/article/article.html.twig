@@ -28,7 +28,7 @@
                 {% else %}
                 <img src="{{asset(articlePrevious.image)}}" alt="">
                 {% endif %}
-                <a href="{{ path('article_name', {name: articlePrevious.category.name, title: articlePrevious.title}) }}"><button>⮘</button></a>
+                <a href="{{ path('article_name', {name: articlePrevious.category.name, slug: articlePrevious.slug}) }}"><button>⮘</button></a>
                 <div>
                     {% if (articlePrevious.title == "Elnias") %}
                     <h2>Les {{ articlePrevious.title }}</h2>
@@ -44,7 +44,7 @@
                 {% else %}
                 <img src="{{asset(articleNext.image)}}" alt="">
                 {% endif %}
-                <a href="{{ path('article_name', {name: articleNext.category.name, title: articleNext.title}) }}"><button>⮚</button></a>
+                <a href="{{ path('article_name', {name: articleNext.category.name, slug: articleNext.slug}) }}"><button>⮚</button></a>
                 <div>
                     {% if (articleNext.title == "Elnias") %}
                     <h2>Les {{ articleNext.title }}</h2>
