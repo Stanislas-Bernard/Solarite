@@ -12,7 +12,7 @@
             <div class="article-content">
                 <h2 class="main-title">{{ mainArticle.title }}</h2>
                 <h3>{{ mainArticle.subtitle }}</h3>
-                <p>{{ mainArticle.content }}</p>
+                <p>{{ mainArticle.content | raw }}</p>
             </div>
         </article>
         <article >
@@ -24,7 +24,7 @@
             <div class="article-content">
                 <h2 class="main-title">{{ lastArticle.title }}</h2>
                 <h3>{{ lastArticle.subtitle }}</h3>
-                <p>{{ lastArticle.content }}</p>
+                <p>{{ lastArticle.content | raw }}</p>
             </div>
         </article>
         <article class="shop-article">
@@ -36,7 +36,7 @@
             <div class="article-content">
                 <h2 class="main-title">{{ itemArticle.title }}</h2>
                 <h3>{{ itemArticle.subtitle }}</h3>
-                <p>{{ itemArticle.content }}</p>
+                <p>{{ itemArticle.content | raw }}</p>
                 <button><i class="fa fa-shopping-cart"> - Acheter</i></button>
             </div>
         </article>

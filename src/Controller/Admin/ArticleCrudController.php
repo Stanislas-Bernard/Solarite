@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
@@ -20,7 +21,7 @@ class ArticleCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             TextField::new('subtitle'),
-            TextField::new('content'),
+            TextareaField::new('content')->renderAsHtml(),
             TextField::new('image'),
             AssociationField::new('category'),
             DateField::new('createdAt')->hideOnForm(),

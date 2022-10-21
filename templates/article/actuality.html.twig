@@ -19,7 +19,7 @@
                 <h2 class="main-title">{{ article.title }}</h2>
                 {% endif %}
                 <h3>{{ article.subtitle }}</h3>
-                <p>{{ article.content }}</p>
+                <p>{{ article.content | raw }}</p>
             </div>
         </article>
         {% endfor %}

@@ -19,7 +19,7 @@ class ArticleController extends AbstractController
     {
         // récupère les articles en fonction de la categorie en cours
         $categoryArticles = $articleRepository->findAllByType($category->getId());
-
+        
         // fait correspondre les index de l'article en cours et de l'article du tableau de categorie
         $i = -1;
         foreach ($categoryArticles as $categoryArticle) {
